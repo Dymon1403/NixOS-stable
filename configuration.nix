@@ -7,43 +7,44 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Точки монтирования
+ {
+  # EFI
+  fileSystems."/boot" = {
+    device = "/dev/sda1";
+    fsType = "vfat";
+  };
+
+  # BTRFS с subvolumes
   fileSystems."/" = {
-    device = "/dev/sda3";
+    device = "/dev/sda2";
     fsType = "btrfs";
     options = [ "subvol=root" "compress=zstd" "noatime" ];
   };
 
   fileSystems."/home" = {
-    device = "/dev/sda3";
+    device = "/dev/sda2";
     fsType = "btrfs";
     options = [ "subvol=home" "compress=zstd" "noatime" ];
   };
 
   fileSystems."/nix" = {
-    device = "/dev/sda3";
+    device = "/dev/sda2";
     fsType = "btrfs";
     options = [ "subvol=nix" "compress=zstd" "noatime" ];
+    neededForBoot = true;
   };
-
-  fileSystems."/boot" = {
-    device = "/dev/sda1";
-    fsType = "vfat";
-  };
+}
 
   # СЕТЬ
   networking.hostName = "thinkpad";
   networking.networkmanager.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  programs.fish.enable = true;
-
   # ПОЛЬЗОВАТЕЛЬ
   users.users.dmitrj = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "video" "docker" "input" ];
     shell = pkgs.bash;
-    initialPassword = "123=-0123";
   };
 
   # sudo без пароля
