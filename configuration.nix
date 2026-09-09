@@ -5,7 +5,7 @@
   # ЗАГРУЗЧИК И ДИСКИ (btrfs)
   # ============================================
   boot.loader.systemd-boot.enable = true;
-
+  boot.loader.efi.canTouchEfiVariables = true;
 
   # Точки монтирования
   fileSystems."/" = {
@@ -39,18 +39,18 @@
   programs.fish.enable = true;
 
   # ПОЛЬЗОВАТЕЛЬ
-  users.users.aptivace = {
+  users.users.dmitrj = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" ];
-    shell = pkgs.fish;  # Fish как дефолтная оболочка
-    initialPassword = "123";
+    extraGroups = [ "wheel" "networkmanager" "video" "docker" "input" ];
+    shell = pkgs.bash;
+    initialPassword = "123=-0123";
   };
 
   # sudo без пароля
   security.sudo.extraRules = [
     {
       groups = [ "wheel" ];
-      commands = [ { command = "ALL"; options = [ "PASSWD" ]; } ];
+      commands = [ { command = "ALL"; options = [ "NOPASSWD" ]; } ];
     }
   ];
 
@@ -61,6 +61,11 @@
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
+  };
+
+  xdg.portal = {
+  enable = true;
+  extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
   };
 
   # env
@@ -74,14 +79,11 @@
   environment.systemPackages = with pkgs; [
     # Системные утилиты
     git
-    vim
+    neovim
     wget
     curl
     htop
     fastfetch
-    unzip
-    gzip
-    udiskie
 
 
     # Звук (PipeWire)
