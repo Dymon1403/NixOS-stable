@@ -7,14 +7,13 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
- {
-  # EFI
+{
+  # Точки монтирования
   fileSystems."/boot" = {
     device = "/dev/sda1";
     fsType = "vfat";
   };
 
-  # BTRFS с subvolumes
   fileSystems."/" = {
     device = "/dev/sda2";
     fsType = "btrfs";
