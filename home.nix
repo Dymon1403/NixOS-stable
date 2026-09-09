@@ -1,12 +1,16 @@
 { config, pkgs, ... }:
 
 {
+
+home.username = "dmitrj";
+  home.homeDirectory = "/home/dmitrj";
+
   programs.bash = {
     enable = true;
-
-    alias bt="bluetoothctl"
-    alias ff="fastfetch"
-    alias nixup = "sudo nix flake update && sudo nixos-rebuild switch --flake .#thinkpad";
+    shellAliases = {
+      bt = "bluetoothctl";
+      ff = "fastfetch";
+      nixup = "sudo nix flake update && sudo nixos-rebuild switch --flake .#thinkpad";
     };
   };
 
@@ -16,7 +20,7 @@
     firefox
     yazi
     tree
-    rofi
+    rofi-wayland
     waybar
 
     # Изображения
