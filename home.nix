@@ -1,60 +1,21 @@
 { config, pkgs, ... }:
 
 {
-  # FISH SHELL (главная оболочка)
-  programs.fish = {
+  programs.bash = {
     enable = true;
 
-    # Интерактивные настройки
-    shellInit = ''
-      set -g fish_greeting             # Убираем приветствие
-      fish_config theme choose "Dracula"  # Если хочешь тему
-    '';
-
-    # Плагины для Fish
-    plugins = [
-      {
-        name = "z";
-        src = pkgs.fishPlugins.z.src;
-      }
-      {
-        name = "fzf";
-        src = pkgs.fishPlugins.fzf-fish.src;
-      }
-      {
-        name = "done";
-        src = pkgs.fishPlugins.done.src;
-      }
-    ];
-
-    # Алиасы (как в bash)
-    shellAliases = {
-      ll = "ls -la";
-      l = "ls -l";
-      gs = "git status";
-      ga = "git add";
-      gc = "git commit";
-      gp = "git push";
-      cat = "bat";     # если поставишь bat
-      nixup = "sudo nix flake update && sudo nixos-rebuild switch --flake .#thinkpad";
+    alias bt="bluetoothctl"
+    alias ff="fastfetch"
+    alias nixup = "sudo nix flake update && sudo nixos-rebuild switch --flake .#thinkpad";
     };
   };
 
   # ПАКЕТЫ ДЛЯ ПОЛЬЗОВАТЕЛЯ
   home.packages = with pkgs; [
-    kitty          # или любой другой
-
-    # Браузер
+    alacritty
     firefox
-
-    # Файловый менеджер
-    thunar
-    gvfs           # для монтирования дисков в Thunar
-
-
-    # Утилиты
+    yazi
     tree
-    jq
     rofi
     waybar
 
@@ -77,14 +38,14 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     BROWSER = "firefox";
-    TERMINAL = "kitty";
+    TERMINAL = "alacritty";
   };
 
   # КОНФИГИ ДЛЯ ПРОГРАММ (через home-manager)
   programs.git = {
     enable = true;
-    userName = "Bro";
-    userEmail = "bro@example.com";
+    userName = "Dymon1403";
+    userEmail = "dymaroxer1403@gmail.com";
     extraConfig = {
       init.defaultBranch = "main";
       core.editor = "nvim";
