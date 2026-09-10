@@ -84,7 +84,7 @@
     curl
     htop
     fastfetch
-
+    
 
     # Звук (PipeWire)
     pipewire
