@@ -1,3 +1,3 @@
 # NixOS-stable
 
-stable built configuration.nix NixOS(meabe)
+stable built configuration.nix NixOS(maybe)
