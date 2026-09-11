@@ -2,7 +2,7 @@
 
 {
   # ============================================
-  # ЗАГРУЗЧИК И ДИСКИ (btrfs)
+  # Boot and Discs setings (btrfs)
   # ============================================
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -34,19 +34,19 @@
   };
 }
 
-  # СЕТЬ
+  # Network
   networking.hostName = "thinkpad";
   networking.networkmanager.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # ПОЛЬЗОВАТЕЛЬ
+  # User
   users.users.dmitrj = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "video" "docker" "input" ];
     shell = pkgs.bash;
   };
 
-  # sudo без пароля
+  # NOPASSWD
   security.sudo.extraRules = [
     {
       groups = [ "wheel" ];
@@ -75,7 +75,7 @@
     GDK_BACKEND = "wayland";
   };
 
-  # СИСТЕМНЫЕ ПАКЕТЫ
+  # System pkgs
   environment.systemPackages = with pkgs; [
     # Системные утилиты
     git
@@ -86,13 +86,13 @@
     fastfetch
     
 
-    # Звук (PipeWire)
+    # Sound (PipeWire)
     pipewire
     wireplumber
     pulsemixer
   ];
 
-  # ЗВУК
+  # Sound
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -101,15 +101,15 @@
   };
   security.rtkit.enable = true;
 
-  # НАСТРОЙКИ FLAKES
+  # setings FLAKES
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.auto-optimise-store = true;
 
   hardware.enableRedistributableFirmware = true;
 
-  # ЧАСОВОЙ ПОЯС
+  # Time/Time zone
   time.timeZone = "Europe/Moscow";
 
-  # ОСТАЛЬНОЕ
+  # Version nixos
   system.stateVersion = "26.05";
 }
