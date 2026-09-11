@@ -14,7 +14,7 @@ home.username = "dmitrj";
     };
   };
 
-  # ПАКЕТЫ ДЛЯ ПОЛЬЗОВАТЕЛЯ
+  # Pkgs for user
   home.packages = with pkgs; [
     alacritty
     firefox
@@ -22,30 +22,25 @@ home.username = "dmitrj";
     tree
     rofi-wayland
     waybar
-
-    # Изображения
     swayimg
     grim
-    hyprshot # скриншоты (Wayland)
-    slurp          # выделение области для скриншотов
-
-    # Мультимедиа
+    hyprshot
+    slurp
     mpv
     ffmpeg
 
-    # Шрифты
     nerd-fonts.jetbrains-mono
     nerd-fonts.fira-code
   ];
 
-  # ХРАНЕНИЕ SECRETS (опционально)
+  # Storage of SECRET
   home.sessionVariables = {
     EDITOR = "nvim";
     BROWSER = "firefox";
     TERMINAL = "alacritty";
   };
 
-  # КОНФИГИ ДЛЯ ПРОГРАММ (через home-manager)
+  # configs for apps (in home-manager)
   programs.git = {
     enable = true;
     userName = "Dymon1403";
@@ -56,7 +51,7 @@ home.username = "dmitrj";
     };
   };
 
-  # Neovim минимальный конфиг (с нуля)
+  # Neovim minimal configuration
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -65,6 +60,6 @@ home.username = "dmitrj";
   };
 
 
-  # ДОМАШНИЕ КАТАЛОГИ
+  # Home repo
   home.stateVersion = "26.05";
 }
