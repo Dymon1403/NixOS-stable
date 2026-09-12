@@ -24,7 +24,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.aptivace = import ./home.nix;
+          home-manager.users.dmitrj = import ./home.nix;
         }
       ];
     };
