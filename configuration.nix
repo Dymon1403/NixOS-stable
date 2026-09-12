@@ -7,8 +7,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-{
-  # Точки монтирования
+  # Mount point
   fileSystems."/boot" = {
     device = "/dev/sda1";
     fsType = "vfat";
