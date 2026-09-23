@@ -9,24 +9,24 @@
 
   # Mount point
   fileSystems."/boot" = {
-    device = "/dev/sda1";
+    device = "/dev/nvme0n1p1";
     fsType = "vfat";
   };
 
   fileSystems."/" = {
-    device = "/dev/sda2";
+    device = "/dev/nvme0n1p2";
     fsType = "btrfs";
     options = [ "subvol=root" "compress=zstd" "noatime" ];
   };
 
   fileSystems."/home" = {
-    device = "/dev/sda2";
+    device = "/dev/nvme0n1p2";
     fsType = "btrfs";
     options = [ "subvol=home" "compress=zstd" "noatime" ];
   };
 
   fileSystems."/nix" = {
-    device = "/dev/sda2";
+    device = "/dev/nvme0n1p2";
     fsType = "btrfs";
     options = [ "subvol=nix" "compress=zstd" "noatime" ];
     neededForBoot = true;
