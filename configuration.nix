@@ -76,7 +76,7 @@
 
   # System pkgs
   environment.systemPackages = with pkgs; [
-    # Системные утилиты
+
     git
     neovim
     wget
